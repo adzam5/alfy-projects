@@ -85,20 +85,14 @@ def check_monotonic_sequence_inverse(def_bool):
     :return: matching sequence to the booleans
     monotonicity_inverse value
     """
-    if def_bool == [1, 1, 0, 0]:
-        return [1, 2, 3, 4, 5, 6, 7, 8]
-    if def_bool == [0, 0, 1, 1]:
-        return [7.5, 4, 3.141, 0.111]
-    if def_bool == [1, 0, 1, 0]:
-        return [1, 1, 1, 1]
-    if def_bool == [1, 0, 0, 0]:
-        return [1, 2, 2, 3]
-    if def_bool == [0, 0, 1, 0]:
-        return [3, 2, 1, 1]
-    if def_bool == [0, 0, 0, 0]:
-        return [1, 0, -1, 1]
-    if def_bool == [1, 1, 1, 1]:
-        return [0]
+    match def_bool:
+        case [1, 1, 0, 0]: return [1, 2, 3, 4, 5, 6, 7, 8]
+        case [0, 0, 1, 1]: return [7.5, 4, 3.141, 0.111]
+        case [1, 0, 1, 0]: return [1, 1, 1, 1]
+        case [1, 0, 0, 0]: return [1, 2, 2, 3]
+        case [0, 0, 1, 0]: return [3, 2, 1, 1]
+        case [0, 0, 0, 0]: return [1, 0, -1, 1]
+        case [1, 1, 1, 1]: return [0]
 
 # 3
 def primes_generator(n):
