@@ -12,6 +12,13 @@ else:
 games_count = 1
 
 def update_word_pattern(word, pattern, letter):
+    """
+    Updated word pattern displayed to user
+    :param word: current word
+    :param pattern: the current pattern
+    :param letter: user input guess
+    :return: updated pattern
+    """
     for i in range(len(word)):
         if word[i] == letter:
             pattern = pattern[:i] + letter + pattern[i+1:]
@@ -19,6 +26,13 @@ def update_word_pattern(word, pattern, letter):
 
 
 def filter_words_list(words, pattern, wrong_guess_lst):
+    """
+    Filters word list to provide hint suggestions to user
+    :param words: list of words
+    :param pattern: the current pattern
+    :param wrong_guess_lst: list of current wrong guesses
+    :return: list of suggested hints
+    """
     matches = []
     for word in words:
         if len(word) == len(pattern):
@@ -36,6 +50,14 @@ def filter_words_list(words, pattern, wrong_guess_lst):
 
 
 def wrong_check(word, wrong_guess_lst):
+    """
+    Helper function for filter_words_list.  Checks if any
+    letters from wrong_guess_lst are in the current iteration
+    of filter_words_list for loop
+    :param word: current word from filter_words_list for loop
+    :param wrong_guess_lst: list of current wrong guesses
+    :return: True or False
+    """
     for letter in word:
         if letter in wrong_guess_lst:
             return False
@@ -43,6 +65,14 @@ def wrong_check(word, wrong_guess_lst):
 
 
 def pattern_check(pattern, word):
+    """
+    Helper function for filter_words_list.  Checks if any
+    letters in the current iteration of filter_words_list for loop
+    are in the current pattern
+    :param word: current word from filter_words_list for loop
+    :param pattern: current pattern
+    :return: True or False
+    """
     matches = 0
     for pos, letter in enumerate(word):
         if letter == pattern[pos]:
@@ -53,6 +83,12 @@ def pattern_check(pattern, word):
 
 
 def run_single_game(list_words, score):
+    """
+    Sets message to display to user, gets a random word, and processes user input
+    :param list_words: list of words
+    :param score: current user score
+    :return: score. message
+    """
     global games_count
     msg = f'{cBold}Welcome to Hangman!{cEnd}'
     wrong_guess_lst = []
@@ -105,6 +141,9 @@ def run_single_game(list_words, score):
 
 
 def main():
+    """
+    Main funtion to start new game or continue playing after game ends
+    """
     global games_count
     list_words = load_words()
     score = POINTS_INITIAL
